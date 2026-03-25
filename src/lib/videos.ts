@@ -42,6 +42,18 @@ const dates: Record<string, string | null> = videoDates as Record<
   string | null
 >;
 
+// 切り抜き除外前の2025-2026年フル動画の本数
+const MAX_VIDEOS = 134;
+
+function extractVideoId(url: string): string {
+  try {
+    const u = new URL(url);
+    return u.searchParams.get("v") || "";
+  } catch {
+    return "";
+  }
+}
+
 function categorize(title: string): string {
   for (const [cat, keywords] of Object.entries(CATEGORIES)) {
     if (keywords.some((kw) => title.includes(kw))) return cat;
@@ -58,10 +70,10 @@ export function getVideos(): Video[] {
   const videos: Video[] = (
     rawVideos as { title: string; url: string; meta?: string }[]
   )
-    .slice(0, 134)
+    .slice(0, MAX_VIDEOS)
     .filter((v) => !v.title.includes("切り抜き"))
     .map((v) => {
-      const vid = v.url.split("watch?v=").pop()?.split("&")[0] || "";
+      const vid = extractVideoId(v.url);
       return {
         video_id: vid,
         title: v.title,
