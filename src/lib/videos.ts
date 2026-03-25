@@ -1,4 +1,5 @@
 import rawVideos from "../runteq_videos.json";
+import videoDates from "../video_dates.json";
 import fs from "fs";
 import path from "path";
 
@@ -36,6 +37,8 @@ const CATEGORIES: Record<string, string[]> = {
   インフラ: ["インフラ", "サーバー", "Docker", "AWS", "CS"],
 };
 
+const dates = videoDates as Record<string, string | null>;
+
 function categorize(title: string): string {
   for (const [cat, keywords] of Object.entries(CATEGORIES)) {
     if (keywords.some((kw) => title.includes(kw))) return cat;
@@ -56,9 +59,20 @@ export function getVideos(): Video[] {
         title: v.title,
         url: v.url,
         category: categorize(v.title),
-        published_at: null,
+        published_at: dates[vid] || null,
       };
     });
+
+  // 日付の新しい順にソート
+  videos.sort((a, b) => {
+    if (!a.published_at && !b.published_at) return 0;
+    if (!a.published_at) return 1;
+    if (!b.published_at) return -1;
+    return (
+      new Date(b.published_at).getTime() - new Date(a.published_at).getTime()
+    );
+  });
+
   return videos;
 }
 

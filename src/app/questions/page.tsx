@@ -1,12 +1,26 @@
+import Link from "next/link";
 import { getQuestions, TAGS } from "@/lib/questions";
 
 export default function QuestionsPage() {
   const questions = getQuestions();
+  const c: Record<string, string> = {
+    AI: "bg-purple-100 text-purple-700",
+    転職: "bg-green-100 text-green-700",
+    学習: "bg-amber-100 text-amber-700",
+    技術: "bg-cyan-100 text-cyan-700",
+    キャリア: "bg-orange-100 text-orange-700",
+  };
 
   return (
     <div className="space-y-4">
       <div className="flex items-center justify-between">
         <h1 className="text-xl font-bold text-gray-800">Q&A</h1>
+        <Link
+          href="/questions/new"
+          className="bg-orange-500 text-white text-sm px-4 py-2 rounded-md hover:bg-orange-600 transition"
+        >
+          + 質問を追加
+        </Link>
       </div>
       <div className="flex flex-wrap gap-1">
         {TAGS.map((tag) => (
@@ -20,66 +34,69 @@ export default function QuestionsPage() {
       </div>
       {questions.length > 0 ? (
         <div className="space-y-3">
-          {questions.map((q, i) => {
-            const c: Record<string, string> = {
-              AI: "bg-purple-100 text-purple-700",
-              転職: "bg-green-100 text-green-700",
-              学習: "bg-amber-100 text-amber-700",
-              技術: "bg-cyan-100 text-cyan-700",
-              キャリア: "bg-orange-100 text-orange-700",
-            };
-            return (
-              <details
-                key={q.id}
-                className="bg-white rounded-lg border border-gray-200 group"
-              >
-                <summary className="flex items-center gap-3 px-5 py-4 cursor-pointer hover:bg-orange-50 transition list-none">
-                  <span className="text-xs text-gray-400 w-6 text-right">
-                    {i + 1}
+          {questions.map((q, i) => (
+            <details
+              key={q.id}
+              className="bg-white rounded-lg border border-gray-200 group"
+            >
+              <summary className="flex items-center gap-3 px-5 py-4 cursor-pointer hover:bg-orange-50 transition list-none">
+                <span className="text-xs text-gray-400 w-6 text-right">
+                  {i + 1}
+                </span>
+                {q.tag && (
+                  <span
+                    className={`shrink-0 text-xs font-medium px-2 py-0.5 rounded ${c[q.tag] || "bg-gray-100 text-gray-600"}`}
+                  >
+                    {q.tag}
                   </span>
-                  {q.tag && (
-                    <span
-                      className={`shrink-0 text-xs font-medium px-2 py-0.5 rounded ${c[q.tag] || "bg-gray-100 text-gray-600"}`}
-                    >
-                      {q.tag}
-                    </span>
-                  )}
-                  <span className="flex-1 text-sm font-medium text-gray-800">
-                    {q.body}
-                  </span>
-                  <span className="shrink-0 text-gray-400 text-xs group-open:rotate-90 transition-transform">
-                    ▶
-                  </span>
-                </summary>
-                <div className="px-5 pb-5 space-y-5 border-t border-gray-100 pt-4">
-                  {q.youtube_answer && (
-                    <div className="border-l-4 border-orange-400 pl-4">
-                      <p className="text-sm font-bold text-orange-600 mb-2">
-                        📺 YouTube (NotebookLM)
-                      </p>
-                      <p className="text-sm text-gray-700 whitespace-pre-line leading-relaxed">
-                        {q.youtube_answer}
-                      </p>
-                    </div>
-                  )}
-                  {q.runteq_answer && (
-                    <div className="border-l-4 border-orange-600 pl-4">
-                      <p className="text-sm font-bold text-orange-700 mb-2">
-                        🤖 ロボらんてくんZ
-                      </p>
-                      <p className="text-sm text-gray-700 whitespace-pre-line leading-relaxed">
-                        {q.runteq_answer}
-                      </p>
-                    </div>
-                  )}
+                )}
+                <span className="flex-1 text-sm font-medium text-gray-800">
+                  {q.body}
+                </span>
+                <span className="shrink-0 text-gray-400 text-xs group-open:rotate-90 transition-transform">
+                  ▶
+                </span>
+              </summary>
+              <div className="px-5 pb-5 space-y-5 border-t border-gray-100 pt-4">
+                {q.youtube_answer && (
+                  <div className="border-l-4 border-orange-400 pl-4">
+                    <p className="text-sm font-bold text-orange-600 mb-2">
+                      📺 YouTube (NotebookLM)
+                    </p>
+                    <p className="text-sm text-gray-700 whitespace-pre-line leading-relaxed">
+                      {q.youtube_answer}
+                    </p>
+                  </div>
+                )}
+                {q.runteq_answer && (
+                  <div className="border-l-4 border-orange-600 pl-4">
+                    <p className="text-sm font-bold text-orange-700 mb-2">
+                      🤖 ロボらんてくんZ
+                    </p>
+                    <p className="text-sm text-gray-700 whitespace-pre-line leading-relaxed">
+                      {q.runteq_answer}
+                    </p>
+                  </div>
+                )}
+                {/* 編集・削除 */}
+                <div className="flex items-center gap-3 pt-3 border-t border-gray-100">
+                  <Link
+                    href={`/questions/${q.id}/edit`}
+                    className="text-xs text-orange-500 hover:text-orange-700 transition"
+                  >
+                    ✏ 編集
+                  </Link>
+                  <button className="text-xs text-red-400 hover:text-red-600 transition cursor-pointer">
+                    🗑 削除
+                  </button>
                 </div>
-              </details>
-            );
-          })}
+              </div>
+            </details>
+          ))}
         </div>
       ) : (
         <div className="bg-white rounded-lg border border-gray-200 p-8 text-center text-gray-500">
-          まだ質問がありません。
+          まだ質問がありません。「+ 質問を追加」から質問を投稿しましょう。
         </div>
       )}
     </div>

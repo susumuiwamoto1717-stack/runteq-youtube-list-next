@@ -85,6 +85,11 @@ export default async function VideosPage({
               >
                 {video.title}
               </Link>
+              {video.published_at && (
+                <span className="shrink-0 text-xs text-gray-400 w-20 text-right">
+                  {new Date(video.published_at).toLocaleDateString("ja-JP")}
+                </span>
+              )}
               <a
                 href={video.url}
                 target="_blank"
