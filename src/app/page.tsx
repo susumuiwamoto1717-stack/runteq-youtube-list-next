@@ -15,7 +15,55 @@ export default function Home() {
     <div className="space-y-6">
       <div className="text-center py-6">
         <h1 className="text-3xl font-bold text-gray-800">YouTube List</h1>
-        <p className="text-gray-500 mt-1">RUNTEQ YouTube動画を自動追跡</p>
+        <p className="text-gray-500 mt-1">
+          RUNTEQ YouTube動画 × NotebookLM × ロボらんてくんZ
+        </p>
+      </div>
+
+      {/* アプリ解説 */}
+      <div className="bg-white rounded-lg border border-gray-200 p-6 space-y-4">
+        <h2 className="text-lg font-bold text-orange-600">
+          このアプリについて
+        </h2>
+        <p className="text-sm text-gray-700 leading-relaxed">
+          RUNTEQ公式YouTubeチャンネルの動画を<strong>自動で収集</strong>
+          し、すべての内容を<strong>Google NotebookLM</strong>に投入。
+          動画の内容についてすぐにQ&Aができる環境を構築しました。
+        </p>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="bg-orange-50 rounded-lg p-4 border border-orange-100">
+            <p className="font-bold text-orange-700 text-sm mb-1">
+              📺 YouTube → NotebookLM
+            </p>
+            <p className="text-xs text-gray-600">
+              RUNTEQ
+              YouTubeの全動画をNotebookLMに自動投入。動画の内容をAIがすぐに理解し、どんな質問にも回答できる状態に。
+            </p>
+          </div>
+          <div className="bg-orange-50 rounded-lg p-4 border border-orange-100">
+            <p className="font-bold text-orange-700 text-sm mb-1">
+              🤖 2つのAIで深く理解
+            </p>
+            <p className="text-xs text-gray-600">
+              NotebookLM（YouTube知識ベース）とロボらんてくんZ（RUNTEQカリキュラム）の2つに質問し、回答を並べて比較。多角的に学べます。
+            </p>
+          </div>
+          <div className="bg-orange-50 rounded-lg p-4 border border-orange-100">
+            <p className="font-bold text-orange-700 text-sm mb-1">
+              📊 インフォグラフィック自動生成
+            </p>
+            <p className="text-xs text-gray-600">
+              NotebookLMが各動画の要点をインフォグラフィックにまとめてくれるので、視覚的に理解しやすく、復習にも最適です。
+            </p>
+          </div>
+        </div>
+        <div className="bg-gray-50 rounded-lg p-4 text-xs text-gray-500">
+          <p className="font-medium text-gray-700 mb-1">自動化の流れ</p>
+          <p>
+            YouTube RSS で新着動画を検知 → NotebookLM に自動追加 →
+            インフォグラフィック生成 → このアプリに反映
+          </p>
+        </div>
       </div>
       <div className="grid grid-cols-3 gap-4 text-center">
         <Stat value={videos.length} label="動画数" color="text-orange-600" />
