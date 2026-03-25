@@ -37,7 +37,10 @@ const CATEGORIES: Record<string, string[]> = {
   インフラ: ["インフラ", "サーバー", "Docker", "AWS", "CS"],
 };
 
-const dates = videoDates as Record<string, string | null>;
+const dates: Record<string, string | null> = videoDates as Record<
+  string,
+  string | null
+>;
 
 function categorize(title: string): string {
   for (const [cat, keywords] of Object.entries(CATEGORIES)) {
@@ -46,7 +49,12 @@ function categorize(title: string): string {
   return "その他";
 }
 
+// ビルド時に1回だけ計算してキャッシュ
+let _cachedVideos: Video[] | null = null;
+
 export function getVideos(): Video[] {
+  if (_cachedVideos) return _cachedVideos;
+
   const videos: Video[] = (
     rawVideos as { title: string; url: string; meta?: string }[]
   )
@@ -59,20 +67,16 @@ export function getVideos(): Video[] {
         title: v.title,
         url: v.url,
         category: categorize(v.title),
-        published_at: dates[vid] || null,
+        published_at: dates[vid] ?? null,
       };
+    })
+    .sort((a, b) => {
+      const dateA = a.published_at ? new Date(a.published_at).getTime() : 0;
+      const dateB = b.published_at ? new Date(b.published_at).getTime() : 0;
+      return dateB - dateA;
     });
 
-  // 日付の新しい順にソート
-  videos.sort((a, b) => {
-    if (!a.published_at && !b.published_at) return 0;
-    if (!a.published_at) return 1;
-    if (!b.published_at) return -1;
-    return (
-      new Date(b.published_at).getTime() - new Date(a.published_at).getTime()
-    );
-  });
-
+  _cachedVideos = videos;
   return videos;
 }
 
