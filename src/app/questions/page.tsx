@@ -246,7 +246,7 @@ function QuestionForm({
           onChange={(e) => setBody(e.target.value)}
           rows={3}
           placeholder="例：AI時代に必要なプログラミングスキルとは何ですか？"
-          className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-400 resize-y"
+          className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-orange-400 resize-y"
         />
       </div>
       <div>
@@ -258,7 +258,7 @@ function QuestionForm({
           onChange={(e) => setYoutubeAnswer(e.target.value)}
           rows={8}
           placeholder="NotebookLMからの回答を貼り付けてください..."
-          className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-400 resize-y"
+          className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-orange-400 resize-y"
         />
       </div>
       <div>
@@ -270,7 +270,7 @@ function QuestionForm({
           onChange={(e) => setRunteqAnswer(e.target.value)}
           rows={8}
           placeholder="ロボらんてくんZからの回答を貼り付けてください..."
-          className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-orange-400 resize-y"
+          className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-orange-400 resize-y"
         />
       </div>
       <div className="flex items-center gap-3">
