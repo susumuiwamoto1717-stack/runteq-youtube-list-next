@@ -42,8 +42,8 @@ const dates: Record<string, string | null> = videoDates as Record<
   string | null
 >;
 
-// 切り抜き除外前の2025-2026年フル動画の本数
-const MAX_VIDEOS = 135;
+// 全動画を読み込み（切り抜きは後でフィルタ除外）
+const MAX_VIDEOS = 800;
 
 function extractVideoId(url: string): string {
   try {
