@@ -22,8 +22,23 @@ const CATEGORY_COLORS: Record<string, string> = {
 function loadQuestions(): Question[] {
   if (typeof window === "undefined") return initialQuestions;
   const saved = localStorage.getItem(STORAGE_KEY);
-  if (saved) return JSON.parse(saved);
-  return initialQuestions;
+  if (!saved) return initialQuestions;
+  // localStorageのデータとソースコードのデータをマージ
+  // ソースコードの初期データを基準にし、localStorageにしかないもの（ユーザー追加分）を追加
+  const savedQuestions: Question[] = JSON.parse(saved);
+  const savedIds = new Set(savedQuestions.map((q) => q.id));
+  const initialIds = new Set(initialQuestions.map((q) => q.id));
+  // ソースコードにあってlocalStorageにないもの（新規デプロイで追加された分）
+  const newFromSource = initialQuestions.filter((q) => !savedIds.has(q.id));
+  // localStorageにあってソースコードにないもの（ユーザーがUIから追加した分）
+  const userAdded = savedQuestions.filter((q) => !initialIds.has(q.id));
+  // ソースコードの初期データ（最新版）＋ ユーザー追加分
+  const merged = [...initialQuestions, ...userAdded];
+  // マージ結果が変わっていたらlocalStorageも更新
+  if (newFromSource.length > 0) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(merged));
+  }
+  return merged;
 }
 
 function saveQuestions(questions: Question[]) {
@@ -74,6 +89,29 @@ export default function QuestionsPage() {
         >
           {showForm ? "キャンセル" : "+ 質問を追加"}
         </button>
+      </div>
+
+      {/* ダウンロード資料 */}
+      <div className="bg-gradient-to-r from-orange-50 to-amber-50 rounded-lg border border-orange-200 p-4">
+        <p className="text-sm font-bold text-orange-700 mb-2">
+          📥 Ruby学習の優先度マップ（ダウンロード）
+        </p>
+        <div className="flex gap-3">
+          <a
+            href="/ruby-learning-priority-map.md"
+            download
+            className="inline-flex items-center gap-1 text-sm bg-white border border-orange-300 text-orange-600 px-3 py-1.5 rounded-md hover:bg-orange-50 transition"
+          >
+            📄 Markdown
+          </a>
+          <a
+            href="/ruby-learning-priority-map.pdf"
+            download
+            className="inline-flex items-center gap-1 text-sm bg-white border border-orange-300 text-orange-600 px-3 py-1.5 rounded-md hover:bg-orange-50 transition"
+          >
+            📕 PDF
+          </a>
+        </div>
       </div>
 
       <div className="flex flex-wrap gap-1">

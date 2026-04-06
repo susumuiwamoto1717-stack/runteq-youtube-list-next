@@ -74,12 +74,14 @@ export function getVideos(): Video[] {
     .filter((v) => !v.title.includes("切り抜き"))
     .map((v) => {
       const vid = extractVideoId(v.url);
+      const metaDate =
+        v.meta && /^\d{4}-\d{2}-\d{2}T/.test(v.meta) ? v.meta : null;
       return {
         video_id: vid,
         title: v.title,
         url: v.url,
         category: categorize(v.title),
-        published_at: dates[vid] ?? null,
+        published_at: dates[vid] ?? metaDate,
       };
     })
     .sort((a, b) => {
