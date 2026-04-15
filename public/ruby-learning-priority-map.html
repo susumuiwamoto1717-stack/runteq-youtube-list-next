@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Ruby学習の優先度マップ</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css" />
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Ruby学習の優先度マップ</h1>
+</header>
+<h1
+id="ruby学習の優先度マップai時代に何をどこまで理解すべきか">Ruby学習の優先度マップ：AI時代に何をどこまで理解すべきか？</h1>
+<h2 id="段階レベルの定義">5段階レベルの定義</h2>
+<table>
+<colgroup>
+<col style="width: 8%" />
+<col style="width: 59%" />
+<col style="width: 32%" />
+</colgroup>
+<thead>
+<tr>
+<th>レベル</th>
+<th>定義</th>
+<th>AIとの関係</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>1</strong></td>
+<td>知っているだけでいい</td>
+<td>AIに完全に任せてOK</td>
+</tr>
+<tr>
+<td><strong>2</strong></td>
+<td>概念を説明できればいい</td>
+<td>AIに任せつつ概念は把握</td>
+</tr>
+<tr>
+<td><strong>3</strong></td>
+<td>コードを読んで理解できる必要がある</td>
+<td>AIの出力を読解できる</td>
+</tr>
+<tr>
+<td><strong>4</strong></td>
+<td>AIの出力を評価・修正できる必要がある</td>
+<td>AIをレビュー・修正できる</td>
+</tr>
+<tr>
+<td><strong>5</strong></td>
+<td>絶対に自分で理解し、説明できなければならない</td>
+<td>AIを設計・制御できる</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="評価一覧">評価一覧</h2>
+<table>
+<colgroup>
+<col style="width: 2%" />
+<col style="width: 63%" />
+<col style="width: 5%" />
+<col style="width: 27%" />
+</colgroup>
+<thead>
+<tr>
+<th>#</th>
+<th>トピック</th>
+<th>レベル</th>
+<th>一言まとめ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>プログラムの3つの流れ（順次・条件分岐・繰り返し）</td>
+<td><strong>4</strong></td>
+<td>ロジックの正しさを判断する力</td>
+</tr>
+<tr>
+<td>2</td>
+<td>データ型（変数・文字列・数値・配列・ハッシュ・真偽値）</td>
+<td><strong>4</strong></td>
+<td>データ構造の評価・修正力</td>
+</tr>
+<tr>
+<td>3</td>
+<td>メソッド（引数・戻り値）</td>
+<td><strong>4</strong></td>
+<td>責務の分離を設計する力</td>
+</tr>
+<tr>
+<td>4</td>
+<td>クラスとオブジェクト（クラス・インスタンス・インスタンス変数）</td>
+<td><strong>5</strong></td>
+<td>AIを制御するための設計図</td>
+</tr>
+<tr>
+<td>5</td>
+<td>配列操作メソッド（each / map / select / find）</td>
+<td><strong>3</strong></td>
+<td>チャンクとして読解する力</td>
+</tr>
+<tr>
+<td>6</td>
+<td>ハッシュ操作・params</td>
+<td><strong>4</strong></td>
+<td>セキュリティの要</td>
+</tr>
+<tr>
+<td>7</td>
+<td>エラーの種類と対処（SyntaxError / NoMethodError /
+ArgumentError）</td>
+<td><strong>4</strong></td>
+<td>仮説を立てる力</td>
+</tr>
+<tr>
+<td>8</td>
+<td>モジュール / ミックスイン</td>
+<td><strong>3</strong></td>
+<td>設計概念の理解</td>
+</tr>
+<tr>
+<td>9</td>
+<td>AIへの指示パターン</td>
+<td><strong>2</strong></td>
+<td>構造化して伝える概念のみ</td>
+</tr>
+<tr>
+<td>10</td>
+<td>Ruby vs Rails の位置づけ</td>
+<td><strong>5</strong></td>
+<td>AIの暴走を防ぐハーネス</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="各トピックの詳細">各トピックの詳細</h2>
+<h3 id="プログラムの3つの流れ順次条件分岐繰り返し-レベル4">1.
+プログラムの3つの流れ（順次・条件分岐・繰り返し）→ レベル4</h3>
+<p><strong>なぜこのレベル？</strong>
+プログラミングの基礎中の基礎。AIはこれらの処理を自動生成してくれるが、そのロジックが「ビジネス要件を満たしているか」「バグや無限ループを引き起こさないか」を判断するのは人間。</p>
+<p><strong>チェックポイント：</strong></p>
+<ul>
+<li>条件分岐：AIが複雑な要件を誤解して間違ったコードを生成することがよくある</li>
+<li>繰り返し：無限ループの可能性やパフォーマンスの問題がないかチェック</li>
+<li>例：「ユーザーがログインしている場合のみ表示」で、ログアウト状態の処理が抜けていないか</li>
+</ul>
+<hr />
+<h3 id="データ型変数文字列数値配列ハッシュ真偽値-レベル4">2.
+データ型（変数・文字列・数値・配列・ハッシュ・真偽値）→ レベル4</h3>
+<p><strong>なぜこのレベル？</strong>
+データ型はシステム全体のデータモデリングの基礎。データモデリングはAIが苦手とする全体最適に関わるため、人間が担うべき領域。</p>
+<p><strong>チェックポイント：</strong></p>
+<ul>
+<li>AIが提案したデータ構造が「ビジネス要件を満たしているか」「拡張性があるか」を評価</li>
+<li>特に配列とハッシュはRailsで頻繁に使われる</li>
+<li>例：「ユーザー情報をハッシュで管理しているが、配列の方が適切ではないか」</li>
+</ul>
+<hr />
+<h3 id="メソッド引数戻り値-レベル4">3. メソッド（引数・戻り値）→
+レベル4</h3>
+<p><strong>なぜこのレベル？</strong>
+メソッド名や引数の順番を丸暗記する必要はない（AIに聞けばすぐ分かる）。しかし「責務の分離」を設計・評価するのは人間の仕事。</p>
+<p><strong>チェックポイント：</strong></p>
+<ul>
+<li>AIが作ったメソッドが適切な粒度になっているか</li>
+<li>単一責任の原則を満たしているか</li>
+<li>例：「このメソッドは、データの取得と加工の両方をしているが、分けた方が良いのではないか」</li>
+</ul>
+<hr />
+<h3
+id="クラスとオブジェクトクラスインスタンスインスタンス変数-レベル5-最重要">4.
+クラスとオブジェクト（クラス・インスタンス・インスタンス変数）→ レベル5
+⭐最重要</h3>
+<p><strong>なぜこのレベル？</strong>
+AI時代に最も重要なスキルの一つ。オブジェクト指向やデザインパターンの理解がないと、AIがカオスなコードを量産しシステムが破綻する。</p>
+<p><strong>チェックポイント：</strong></p>
+<ul>
+<li>オブジェクト指向は「複雑さを管理するための思想」</li>
+<li>SOLID原則（単一責任、オープン・クローズド等）はAIを制御するための「ハーネス」</li>
+<li>RailsのMVCアーキテクチャそのものがオブジェクト指向</li>
+<li>例：「このクラスの責務は明確か」「ユーザー情報の管理と注文処理は分けるべきか」</li>
+</ul>
+<hr />
+<h3 id="配列操作メソッドeach-map-select-find-レベル3">5.
+配列操作メソッド（each / map / select / find）→ レベル3</h3>
+<p><strong>なぜこのレベル？</strong>
+スペルや使い方の完璧な暗記は全く不要。AIが生成したコードを読む際に「チャンク」として瞬時に読んで理解できることが重要。</p>
+<p><strong>覚えるべき役割の違い：</strong></p>
+<ul>
+<li><code>each</code>: 繰り返し処理（副作用目的）</li>
+<li><code>map</code>: 変換して新しい配列を作る</li>
+<li><code>select</code>: 条件に合うものだけを抽出</li>
+<li><code>find</code>: 条件に合う最初の1つを取得</li>
+</ul>
+<p><strong>判断基準：</strong>
+AIがeachで書いてきたけど「変換した結果がほしい」なら、「それmapじゃないの？」と言えればOK。</p>
+<hr />
+<h3 id="ハッシュ操作params-レベル4">6. ハッシュ操作・params →
+レベル4</h3>
+<p><strong>なぜこのレベル？</strong>
+Railsのparams処理はセキュリティの要。AIにフォーム処理を書かせた際、意図しないデータまで保存してしまう脆弱性がないかを厳密に評価する力が必要。</p>
+<p><strong>チェックポイント：</strong></p>
+<ul>
+<li>Strong Parametersの設定が甘くないか</li>
+<li>マスアサインメント脆弱性に注意</li>
+<li>例：「adminフラグまで許可していないか」「ネストしたパラメータの許可設定は正しいか」</li>
+</ul>
+<hr />
+<h3 id="エラーの種類と対処-レベル4">7. エラーの種類と対処 → レベル4</h3>
+<p><strong>なぜこのレベル？</strong>
+エラーメッセージを見て「おそらく原因はここだろう」と自分で仮説を立てる力が必須。</p>
+<p><strong>主要なエラーと原因：</strong> | エラー種別 | 意味 |
+よくある原因 | |———–|——|————| | SyntaxError | 文法ミス |
+endの重複、カッコの閉じ忘れ | | NoMethodError |
+存在しないメソッドを呼んだ | nilに対してメソッドを使った | |
+ArgumentError | 引数の数が違う | メソッドに渡す値の数が合っていない
+|</p>
+<p><strong>良い指示 vs 悪い指示：</strong></p>
+<ul>
+<li>❌ 「エラーが出ました。どうすればいいですか?」</li>
+<li>✅
+「NoMethodErrorが出ました。おそらく変数がnilになっているのが原因だと思いますが、確認方法を教えてください」</li>
+</ul>
+<hr />
+<h3 id="モジュール-ミックスイン-レベル3">8. モジュール / ミックスイン →
+レベル3</h3>
+<p><strong>なぜこのレベル？</strong>
+DRY原則や単一責任の原則という設計概念を理解し、AIが生成したコードの構造を読んで把握できれば、具体的な記述方法はAIに任せてOK。</p>
+<p><strong>Railsでの実例：</strong></p>
+<ul>
+<li>ApplicationControllerにhelper_method
+:current_userを書いて、全ビューでcurrent_userが使えるようになった仕組みは、Rubyのモジュール/ミックスインの考え方がベース</li>
+<li>RailsではConcernという形でモジュールが頻繁に使われる</li>
+</ul>
+<hr />
+<h3 id="aiへの指示パターン-レベル2">9. AIへの指示パターン → レベル2</h3>
+<p><strong>なぜこのレベル？</strong>
+「プロンプト集は捨てていい」「プロンプトの呪文を暗記する価値は薄れている」。問題を構造化して伝える概念さえ理解していれば十分。</p>
+<p><strong>意識すべき構造（自然な日本語でOK）：</strong></p>
+<ol type="1">
+<li>何をしたいのか（目的）</li>
+<li>現状どうなっているのか</li>
+<li>何が問題なのか</li>
+<li>自分の仮説は何か</li>
+</ol>
+<hr />
+<h3 id="ruby-vs-rails-の位置づけ-レベル5-最重要">10. Ruby vs Rails
+の位置づけ → レベル5 ⭐最重要</h3>
+<p><strong>なぜこのレベル？</strong> Railsの「設定より規約（Rails
+Way）」はAIを暴走させないための最強の「ハーネス（安全装置）」。</p>
+<p><strong>RubyとRailsの違い：</strong></p>
+<ul>
+<li>Ruby = プログラミング言語（道具）</li>
+<li>Rails =
+Webアプリケーションフレームワーク（設計図と道具のセット）</li>
+</ul>
+<p><strong>Rails Wayの具体例：</strong></p>
+<ul>
+<li>モデル名は単数形、テーブル名は複数形</li>
+<li>コントローラーのアクションは7つの標準アクション（index, show, new,
+create, edit, update, destroy）</li>
+<li>ファイルの配置場所は決まっている（app/models, app/controllers,
+app/views）</li>
+</ul>
+<p><strong>AIとの関係：</strong></p>
+<ul>
+<li>❌ AIが自由に書いたコード →
+ファイルの配置がバラバラ、命名規則が統一されていない</li>
+<li>✅ Rails Wayに沿ったコード →
+規約通りの配置、統一された命名、ActiveRecordの規約に従う</li>
+</ul>
+<hr />
+<h2 id="優先順位まとめ">優先順位まとめ</h2>
+<table>
+<colgroup>
+<col style="width: 9%" />
+<col style="width: 6%" />
+<col style="width: 84%" />
+</colgroup>
+<thead>
+<tr>
+<th>優先度</th>
+<th>レベル</th>
+<th>トピック</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>🔴 最優先</td>
+<td><strong>5</strong></td>
+<td>クラスとオブジェクト、Ruby vs Rails の位置づけ</td>
+</tr>
+<tr>
+<td>🟠 高優先</td>
+<td><strong>4</strong></td>
+<td>プログラムの3つの流れ、データ型、メソッド、ハッシュ操作・params、エラーの種類と対処</td>
+</tr>
+<tr>
+<td>🟡 中優先</td>
+<td><strong>3</strong></td>
+<td>配列操作メソッド、モジュール/ミックスイン</td>
+</tr>
+<tr>
+<td>🟢 低優先</td>
+<td><strong>2</strong></td>
+<td>AIへの指示パターン（概念理解のみでOK）</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="活用方法">活用方法</h2>
+<ol type="1">
+<li><strong>学習の優先順位付け</strong>:
+時間が限られているときは、レベル5と4を最優先で理解する</li>
+<li><strong>AIとの協働の指針</strong>:
+レベル5と4は自分で判断しAIを制御する。レベル3以下はAIに任せてOK</li>
+<li><strong>復習の基準</strong>:
+定期的にレベル5と4の項目を復習し、本質的な理解を深める</li>
+</ol>
+<hr />
+<p><em>RUNTEQ YouTube List プロジェクト — NotebookLM × ロボらんてくんZ
+Q&amp;A</em></p>
+</body>
+</html>
