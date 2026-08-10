@@ -1,36 +1,150 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# RUNTEQ YouTube List — 動画の学びを探して、比べて、振り返る
 
-## Getting Started
+本番URL: https://youtube-list-weld.vercel.app
 
-First, run the development server:
+RUNTEQ公式YouTubeチャンネルの動画を一覧化し、NotebookLMで整理した内容と
+ロボらんてくんZの回答を横断して学べる、個人制作の学習支援アプリです。
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## 1. サービス概要
+
+**動画を「見て終わり」にせず、必要な情報を探し、問いを立て、複数の回答を
+比較しながら自分の学びに変えるための場所です。**
+
+RUNTEQ公式YouTubeチャンネルには、プログラミング学習、転職、キャリア、AI、
+Ruby/Railsなど、学習中に役立つ動画が数多く公開されています。本アプリは、
+それらを検索・カテゴリ別に閲覧できる形にまとめ、動画ごとの情報や
+インフォグラフィック、Q&Aを一か所から確認できるようにしています。
+
+## 2. 想定ユーザーと課題
+
+想定ユーザーは、RUNTEQで学習中の受講生や、Webエンジニアへの転職を目指して
+情報収集している方です。
+
+YouTubeには有益な情報が多い一方で、動画が増えるほど「今の自分に必要な動画が
+見つからない」「一度見た内容を振り返りにくい」「動画とカリキュラムの知識を
+結びつけにくい」という課題が生まれます。
+
+## 3. 解決の仕組み
+
+1. **動画をまとめて探せる** — タイトル検索とカテゴリ絞り込みで、目的の動画へすぐ移動
+2. **要点を視覚的に振り返れる** — 用意されている動画では、NotebookLMで生成したインフォグラフィックを表示
+3. **2つの視点を比較できる** — YouTube動画を基にしたNotebookLMの回答と、ロボらんてくんZの回答をQ&A形式で掲載
+4. **問いを自分で育てられる** — Q&Aの追加・編集・削除に対応し、ブラウザのローカルストレージへ保存
+5. **新着を継続的に反映できる** — YouTubeの動画データ取得からNotebookLMへの投入、成果物の反映までを運用フローとして整理
+
+## 4. こだわり — 回答を並べて、考える余白を残す
+
+このアプリでは、AIの回答を一つの正解として提示するのではなく、
+YouTube動画を知識源にした回答と、RUNTEQの学習文脈に寄せた回答を並べています。
+
+同じ質問でも、参照する知識や立場によって答えの焦点は変わります。
+違いを読み比べ、「自分ならどう考えるか」を整理できることを重視しました。
+
+## 5. 実装済みの機能
+
+| 機能 | 目的 |
+| --- | --- |
+| 動画一覧・詳細表示 | RUNTEQ公式YouTube動画を一か所で確認する |
+| タイトル検索 | 必要なテーマの動画をすばやく探す |
+| カテゴリ絞り込み | AI、転職、学習、Ruby/Railsなどのテーマ別に探す |
+| 公開日の表示 | 新しい動画から時系列で確認する |
+| YouTubeへの外部リンク | 元動画をすぐに視聴する |
+| インフォグラフィック表示 | 対応動画の要点を視覚的に振り返る |
+| Q&A一覧 | NotebookLMとロボらんてくんZの回答を比較する |
+| Q&Aの追加・編集・削除 | 自分の問いをブラウザ内に保存して管理する |
+| 学習資料のダウンロード | Ruby学習の優先度マップをMarkdown/PDFで参照する |
+| アプリ構成の解説 | Next.jsとRailsの違いを含め、実装の仕組みを学ぶ |
+
+## 6. 運用・更新フロー
+
+```text
+YouTubeの新着動画を検知
+        ↓
+動画データを取得・更新
+        ↓
+NotebookLMへソースを追加
+        ↓
+要約・インフォグラフィックを生成
+        ↓
+データと画像をアプリへ反映
+        ↓
+Vercelへデプロイ
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+アプリ本体はDBを持たず、動画情報をJSON、Q&Aの初期データをTypeScript、
+インフォグラフィックを静的画像として管理しています。ユーザーが追加・編集した
+Q&Aはブラウザのローカルストレージに保存されます。
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+このリポジトリに含まれるのは表示用アプリと反映済みデータです。
+動画取得やNotebookLM操作などの更新処理は、アプリ本体の外で運用しています。
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 7. 技術スタック
 
-## Learn More
+- 言語: TypeScript
+- フレームワーク: Next.js 16（App Router）/ React 19
+- スタイリング: Tailwind CSS 4
+- データ: JSON / TypeScript / Web Storage API（localStorage）
+- AI活用: Google NotebookLM / ロボらんてくんZ
+- インフラ: Vercel
+- 品質管理: ESLint
 
-To learn more about Next.js, take a look at the following resources:
+## 8. ローカルでの起動方法
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 必要環境
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Node.js 20以上
+- npm
 
-## Deploy on Vercel
+### セットアップ
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+git clone https://github.com/susumuiwamoto1717-stack/runteq-youtube-list-next.git
+cd runteq-youtube-list-next
+npm install
+npm run dev
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+ブラウザで http://localhost:3000 を開いてください。
+
+### 確認コマンド
+
+```bash
+npm run lint
+npm run build
+```
+
+## 9. 主なディレクトリ構成
+
+```text
+src/
+├── app/
+│   ├── page.tsx              # トップページ
+│   ├── videos/               # 動画一覧・詳細
+│   ├── questions/            # Q&A一覧・編集
+│   └── how-it-works/         # アプリ構成の解説
+├── lib/
+│   ├── videos.ts             # 動画の読み込み・分類
+│   └── questions.ts          # Q&Aの型・初期データ
+├── runteq_videos.json        # 動画データ
+└── video_dates.json          # 公開日データ
+
+public/
+├── infographics/             # 動画ごとのインフォグラフィック
+├── ruby-learning-priority-map.md
+└── ruby-learning-priority-map.pdf
+```
+
+## 10. 今後の展開
+
+- 動画データ更新フローの安定化と重複チェック
+- Q&AデータのJSON分離と管理方法の改善
+- カテゴリ定義・表示コンポーネントの共通化
+- インフォグラフィック生成状況の可視化
+- お気に入り、視聴済み、学習メモなどの個人向け機能
+- 検索対象をタイトル以外の要約・Q&Aへ拡張
+
+## 11. 注意事項
+
+- 本アプリは個人制作の学習支援ツールであり、RUNTEQ公式サービスではありません。
+- RUNTEQおよび各サービス名は、それぞれの権利者に帰属します。
+- 動画の内容や各AIの回答は変更される可能性があります。重要な判断では、元動画や公式情報も確認してください。
